@@ -1,0 +1,10 @@
+{
+  
+  "AppId":	[1,2,3,4,5,6,7,8,9,10]
+  "AppName":	["Alexandria","AlternateLove","Caltech","Florate","Flotorizer","Medici","FloSharedSecret","tZero","WorldMood","Xertify"]
+  "Icon":	["/Icon/Alexandria.png","/Icon/AlternateLove.png","/Icon/Caltech.png","/Icon/Florate.png","/Icon/Flotorizer.png","/Icon/Medici.png","/Icon/SharedSecret.png","/Icon/tZero.png","/Icon/WorldMood.png","/Icon/Xcertify.png"]
+  "Type":	["Webapp","Cmdline","Webapp","Gui","Webapp","Webapp","Gui","Webapp","Webapp","Cmdline"]
+  "Location":	["-","apps/Aterna-Love/","-","apps/Florate/","-","-","apps/FLO-Shared-Secret/","-","-","apps/Xcertify/"]
+  "Exec":	["https://alexandria.io/browser/","gnome-terminal -- ./auto-aterna-love.sh","https://etdb.caltech.edu/browse","./Florate","http://flotorizer.net/","https://www.mediciventures.com/","./FLO_Secret","https://www.tzero.com/","http://worldmood.io/","gnome-terminal -- ./xcertify"] 
+
+}
