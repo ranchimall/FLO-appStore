@@ -1,0 +1,84 @@
+{
+	"Dapps": [
+		{
+			"id":		"1",
+			"name":		"Alexandria",
+			"icon":		"/Icon/Alexandria.png",
+			"type":		"Webapp",
+			"location":	"-",
+			"exec": 	"https://alexandria.io/browser/"
+		},
+		{
+			"id":		"2",
+			"name":		"AlternateLove",
+			"icon":		"/Icon/AlternateLove.png",
+			"type":		"Cmdline",
+			"location":	"/apps/Aterna-Love",
+			"exec": 	"gnome-terminal -- ./auto-aterna-love.sh"
+		},
+		{
+			"id":		"3",
+			"name":		"Caltech",
+			"icon":		"/Icon/Caltech.png",
+			"type":		"Webapp",
+			"location":	"-",
+			"exec": 	"https://etdb.caltech.edu/browse"
+		},
+		{
+			"id":		"4",
+			"name":		"Flotorizer",
+			"icon":		"/Icon/Flotorizer.png",
+			"type":		"Webapp",
+			"location":	"-",
+			"exec": 	"http://flotorizer.net/"
+		},
+		{
+			"id":		"5",
+			"name":		"Medici",
+			"icon":		"/Icon/Medici.png",
+			"type":		"Webapp",
+			"location":	"-",
+			"exec": 	"https://www.mediciventures.com/"
+		},
+		{
+			"id":		"6",
+			"name":		"FloSharedSecret",
+			"icon":		"/Icon/SharedSecret.png",
+			"type":		"Gui",
+			"location":	"/apps/FLO-Shared-Secret/",
+			"exec": 	"./FLO_Secret"
+		},
+		{
+			"id":		"7",
+			"name":		"Florate",
+			"icon":		"/Icon/Florate.png",
+			"type":		"Gui",
+			"location":	"/apps/Florate/",
+			"exec": 	"./Florate"
+		},
+		{
+			"id":		"8",
+			"name":		"tZero",
+			"icon":		"/Icon/tZero.png",
+			"type":		"Webapp",
+			"location":	"-",
+			"exec": 	"https://www.tzero.com/"
+		},
+		{
+			"id":		"9",
+			"name":		"WorldMood",
+			"icon":		"/Icon/WorldMood.png",
+			"type":		"Webapp",
+			"location":	"-",
+			"exec": 	"http://worldmood.io/"
+		},
+		{
+			"id":		"10",
+			"name":		"Xcertify",
+			"icon":		"/Icon/Xcertify.png",
+			"type":		"Cmdline",
+			"location":	"/apps/Xcertify/",
+			"exec": 	"gnome-terminal -- ./xcertify"
+		}
+	]
+}
