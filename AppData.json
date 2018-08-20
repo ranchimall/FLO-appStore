@@ -14,7 +14,7 @@
 			"icon":		"Icon/AternaLove.png",
 			"type":		"Cmdline",
 			"location":	"apps/Aterna-Love",
-			"exec": 	"./auto-aterna-love.sh"
+			"exec": 	"'bash -c ./auto-aterna-love.sh;bash'"
 		},
 		{
 			"id":		"3",
@@ -78,7 +78,7 @@
 			"icon":		"Icon/Xcertify.png",
 			"type":		"Cmdline",
 			"location":	"apps/Xcertify/",
-			"exec": 	"./xcertify"
+			"exec": 	"'bash -c ./xcertify;bash'"
 		}
 	]
 }
