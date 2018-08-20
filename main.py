@@ -27,7 +27,7 @@ class FLOappStore:
 		if(apps[i]["type"] == "Gui"):
 			subprocess.Popen(apps[i]["exec"], cwd=apps[i]["location"])
 		elif(apps[i]["type"] == "Cmdline"):
-			subprocess.Popen(["gnome-terminal -- "+apps[i]["exec"]], cwd=apps[i]["location"],stdout=subprocess.PIPE, shell=True)
+			subprocess.Popen(["mate-terminal --command %s" % (apps[i]["exec"])],cwd=apps[i]["location"],stdout=subprocess.PIPE,shell=True)
 		elif(apps[i]["type"] == "Webapp"):
 			webbrowser.open(apps[i]["exec"],new=1)
 
