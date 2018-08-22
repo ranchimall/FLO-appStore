@@ -13,6 +13,7 @@ class FLOappStore:
 		self.root = root
 		self.maxRow=5
 		self.maxCol=2
+		self.flag=0
 
 	def start(self):
 		self.MainFrame = Frame(self.root)
@@ -23,18 +24,26 @@ class FLOappStore:
 		self.searchBox.grid(row=2,column=1,sticky="E")
 		self.searchButton=Button(self.MainFrame,text="Search",command = self.searchApps)
 		self.searchButton.grid(row=2,column=2,sticky="W")
-		self.clearSearchButton=Button(self.MainFrame,text="Clear Search",command = self.clearSearch)
-		self.clearSearchButton.grid(row=2,column=2,sticky="N")
 		self.clearSearch()
 
 		
 	def clearSearch(self):
+		if self.flag==1:
+			self.clearSearchButton.destroy()
+			self.flag=0
 		self.searchBox.delete(0, 'end')
 		self.searchApps()
 
 	def searchApps(self):
 		self.searchResult=[]
 		searchText=self.searchBox.get()
+		if(searchText != ""):
+			self.flag=1
+			self.clearSearchButton=Button(self.MainFrame,text="Clear Search",command = self.clearSearch)
+			self.clearSearchButton.grid(row=2,column=2,sticky="N")
+		if(searchText == "" and self.flag == 1):
+			self.flag=0
+			self.clearSearchButton.destroy()
 		for app in apps:
 			if (searchText.lower() in app["name"].lower()):
 				self.searchResult = self.searchResult + [app]
