@@ -37,7 +37,7 @@ class FLOappStore:
 	def searchApps(self):
 		self.searchResult=[]
 		searchText=self.searchBox.get()
-		if(searchText != ""):
+		if(searchText != "" and self.flag == 0):
 			self.flag=1
 			self.clearSearchButton=Button(self.MainFrame,text="Clear Search",command = self.clearSearch)
 			self.clearSearchButton.grid(row=2,column=2,sticky="N")
