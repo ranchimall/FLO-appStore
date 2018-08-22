@@ -23,8 +23,15 @@ class FLOappStore:
 		self.searchBox.grid(row=2,column=1,sticky="E")
 		self.searchButton=Button(self.MainFrame,text="Search",command = self.searchApps)
 		self.searchButton.grid(row=2,column=2,sticky="W")
-		self.searchApps()
+		self.clearSearchButton=Button(self.MainFrame,text="Clear Search",command = self.clearSearch)
+		self.clearSearchButton.grid(row=2,column=2,sticky="N")
+		self.clearSearch()
+
 		
+	def clearSearch(self):
+		self.searchBox.delete(0, 'end')
+		self.searchApps()
+
 	def searchApps(self):
 		self.searchResult=[]
 		searchText=self.searchBox.get()
