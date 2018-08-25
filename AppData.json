@@ -6,7 +6,7 @@
 			"icon":		"Icon/Alexandria.png",
 			"type":		"Webapp",
 			"location":	"-",
-			"exec": 	"https://alexandria.io/browser/"
+			"url": 	"https://alexandria.io/browser/"
 		},
 		{
 			"id":		"2",
@@ -22,7 +22,7 @@
 			"icon":		"Icon/Caltech.png",
 			"type":		"Webapp",
 			"location":	"-",
-			"exec": 	"https://etdb.caltech.edu/browse"
+			"url": 	"https://etdb.caltech.edu/browse"
 		},
 		{
 			"id":		"4",
@@ -30,7 +30,7 @@
 			"icon":		"Icon/Flotorizer.png",
 			"type":		"Webapp",
 			"location":	"-",
-			"exec": 	"http://flotorizer.net/"
+			"url": 	"http://flotorizer.net/"
 		},
 		{
 			"id":		"5",
@@ -38,7 +38,7 @@
 			"icon":		"Icon/Medici.png",
 			"type":		"Webapp",
 			"location":	"-",
-			"exec": 	"https://www.mediciventures.com/"
+			"url": 	"https://www.mediciventures.com/"
 		},
 		{
 			"id":		"6",
@@ -62,7 +62,7 @@
 			"icon":		"Icon/tZero.png",
 			"type":		"Webapp",
 			"location":	"-",
-			"exec": 	"https://www.tzero.com/"
+			"url": 	"https://www.tzero.com/"
 		},
 		{
 			"id":		"9",
@@ -70,7 +70,7 @@
 			"icon":		"Icon/WorldMood.png",
 			"type":		"Webapp",
 			"location":	"-",
-			"exec": 	"http://worldmood.io/"
+			"url": 	"http://worldmood.io/"
 		},
 		{
 			"id":		"10",

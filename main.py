@@ -13,7 +13,6 @@ class FLOappStore:
 		self.root = root
 		self.maxRow=5
 		self.maxCol=2
-		self.flag=0
 
 	def start(self):
 		self.MainFrame = Frame(self.root)
@@ -24,26 +23,23 @@ class FLOappStore:
 		self.searchBox.grid(row=2,column=1,sticky="E")
 		self.searchButton=Button(self.MainFrame,text="Search",command = self.searchApps)
 		self.searchButton.grid(row=2,column=2,sticky="W")
-		self.clearSearch()
+		self.searchApps()
 
 		
 	def clearSearch(self):
-		if self.flag==1:
-			self.clearSearchButton.destroy()
-			self.flag=0
 		self.searchBox.delete(0, 'end')
 		self.searchApps()
 
 	def searchApps(self):
+		try:
+			self.clearSearchButton.destroy()
+		except:
+			None
 		self.searchResult=[]
 		searchText=self.searchBox.get()
-		if(searchText != "" and self.flag == 0):
-			self.flag=1
+		if(searchText != ""):
 			self.clearSearchButton=Button(self.MainFrame,text="Clear Search",command = self.clearSearch)
 			self.clearSearchButton.grid(row=2,column=2,sticky="N")
-		if(searchText == "" and self.flag == 1):
-			self.flag=0
-			self.clearSearchButton.destroy()
 		for app in apps:
 			if (searchText.lower() in app["name"].lower()):
 				self.searchResult = self.searchResult + [app]
@@ -94,12 +90,33 @@ class FLOappStore:
 
 	def execute(self,app):
 		print(app["name"])
+		self.appWin = Toplevel()
+		self.appWin.title(app["name"])
+		self.appWin.geometry("500x100")
+		self.appWin.resizable(0,0)
 		if(app["type"] == "Gui"):
-			subprocess.Popen(app["exec"], cwd=app["location"])
+			openButton = Button(self.appWin,text="Open App",command=lambda :self.openGuiApp(app))
+			updateButton = Button(self.appWin)
+			openButton.pack()
 		elif(app["type"] == "Cmdline"):
-			subprocess.Popen(["gnome-terminal --command %s" % (app["exec"])],cwd=app["location"],stdout=subprocess.PIPE,shell=True)
+			openButton = Button(self.appWin,text="Open Terminal",command=lambda :self.openCmdLineApp(app))
+			openButton.pack()
 		elif(app["type"] == "Webapp"):
-			webbrowser.open(app["exec"],new=1)
+			openButton = Button(self.appWin,text="Open Browser",command=lambda :self.openBrowserApp(app))
+			openButton.pack()
+		self.appWin.mainloop()
+
+	def openGuiApp(self,app):
+		self.appWin.destroy()
+		subprocess.Popen(app["exec"], cwd=app["location"])
+
+	def openCmdLineApp(self,app):
+		self.appWin.destroy()
+		subprocess.Popen(["gnome-terminal --command %s" % (app["exec"])],cwd=app["location"],stdout=subprocess.PIPE,shell=True)
+
+	def openBrowserApp(self,app):
+		self.appWin.destroy()
+		webbrowser.open(app["url"],new=1)
 
 with open('AppData.json',encoding='utf-8') as F:
 	apps=json.loads(F.read())["Dapps"]
