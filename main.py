@@ -92,27 +92,48 @@ class FLOappStore:
 		print(app["name"])
 		self.appWin = Toplevel()
 		self.appWin.title(app["name"])
-		self.appWin.geometry("500x100")
-		self.appWin.resizable(0,0)
-		if(app["type"] == "Gui"):
-			openButton = Button(self.appWin,text="Open App",command=lambda :self.openGuiApp(app))
-			updateButton = Button(self.appWin)
-			openButton.pack()
-		elif(app["type"] == "Cmdline"):
-			openButton = Button(self.appWin,text="Open Terminal",command=lambda :self.openCmdLineApp(app))
-			openButton.pack()
+		#self.appWin.geometry("500x100")
+		#self.appWin.resizable(0,0)
+		if(app["type"] == "Gui" or app["type"] == "Cmdline"):
+			if(os.path.isdir(app["location"]) and subprocess.Popen("git config --get remote.origin.url",cwd=app["location"],stdout=subprocess.PIPE,shell=True).communicate()[0].decode("utf-8").strip()==app["github"]):
+				openButton = Button(self.appWin,text="Open App",command=lambda :self.openApp(app))
+				openButton.pack()
+				if(subprocess.Popen("git diff --raw",cwd=app["location"],stdout=subprocess.PIPE,shell=True).communicate()[0].decode("utf-8")!=""):
+					updateButton = Button(self.appWin,text="Update App",command=lambda :self.updateApp(app))
+					updateButton.pack()
+				removeButton = Button(self.appWin,text="Remove App",command=lambda :self.removeApp(app))
+				removeButton.pack()
+			else:
+				downloadButton = Button(self.appWin,text="Download App",command=lambda :self.downloadApp(app))
+				downloadButton.pack()
 		elif(app["type"] == "Webapp"):
 			openButton = Button(self.appWin,text="Open Browser",command=lambda :self.openBrowserApp(app))
 			openButton.pack()
 		self.appWin.mainloop()
 
-	def openGuiApp(self,app):
+	def downloadApp(self,app):
 		self.appWin.destroy()
-		subprocess.Popen(app["exec"], cwd=app["location"])
+		subprocess.Popen(['rm', '-rf', app['location']])
+		subprocess.Popen("gnome-terminal -- git clone %s"%(app["github"]),cwd="apps/",shell=True)
+		messagebox.showinfo(app['name'], f"Downloading {app['name']}...\n Please Wait until the downloader closes")
 
-	def openCmdLineApp(self,app):
+	def removeApp(self,app):
 		self.appWin.destroy()
-		subprocess.Popen(["gnome-terminal --command %s" % (app["exec"])],cwd=app["location"],stdout=subprocess.PIPE,shell=True)
+		subprocess.Popen(['rm', '-rf', app['location']])
+		messagebox.showinfo(app['name'], f"Removed {app['name']}...")
+
+	def updateApp(self,app):
+		self.appWin.destroy()
+		subprocess.Popen("gnome-terminal -- git fetch --all",cwd=app['location'],shell=True)
+		subprocess.Popen("gnome-terminal -- git reset --hard HEAD ",cwd=app['location'],shell=True)
+		messagebox.showinfo(app['name'], f"Updating {app['name']}...\n Please Wait until the updater closes")
+
+	def openApp(self,app):
+		self.appWin.destroy()
+		if(app["type"] == "Gui"):
+			subprocess.Popen(app["exec"], cwd=app["location"])
+		elif(app["type"] == "Cmdline"):
+			subprocess.Popen(["gnome-terminal --command",app["exec"]],cwd=app["location"],stdout=subprocess.PIPE,shell=True)
 
 	def openBrowserApp(self,app):
 		self.appWin.destroy()
