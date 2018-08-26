@@ -5,8 +5,7 @@
 			"name":		"Alexandria",
 			"icon":		"Icon/Alexandria.png",
 			"type":		"Webapp",
-			"location":	"-",
-			"url": 	"https://alexandria.io/browser/"
+			"url": 		"https://alexandria.io/browser/"
 		},
 		{
 			"id":		"2",
@@ -14,7 +13,7 @@
 			"icon":		"Icon/AternaLove.png",
 			"type":		"Cmdline",
 			"location":	"apps/aternalove",
-			"exec": 	"'bash -c ./auto-aterna-love.sh;bash'",
+			"exec": 	"./auto-aterna-love.sh",
 			"github":	"https://github.com/metacoin/aternalove.git"
 		},
 		{
@@ -22,24 +21,21 @@
 			"name":		"Caltech",
 			"icon":		"Icon/Caltech.png",
 			"type":		"Webapp",
-			"location":	"-",
-			"url": 	"https://etdb.caltech.edu/browse"
+			"url": 		"https://etdb.caltech.edu/browse"
 		},
 		{
 			"id":		"4",
 			"name":		"Flotorizer",
 			"icon":		"Icon/Flotorizer.png",
 			"type":		"Webapp",
-			"location":	"-",
-			"url": 	"http://flotorizer.net/"
+			"url": 		"http://flotorizer.net/"
 		},
 		{
 			"id":		"5",
 			"name":		"Medici",
 			"icon":		"Icon/Medici.png",
 			"type":		"Webapp",
-			"location":	"-",
-			"url": 	"https://www.mediciventures.com/"
+			"url": 		"https://www.mediciventures.com/"
 		},
 		{
 			"id":		"6",
@@ -55,7 +51,7 @@
 			"name":		"Florate",
 			"icon":		"Icon/Florate.png",
 			"type":		"Gui",
-			"location":	"apps/Florate-Dapp/",
+			"location":	"apps/FloRate-Dapp/",
 			"exec": 	"./Florate",
 			"github":	"https://github.com/Tarun047/FloRate-Dapp.git"
 		},
@@ -64,16 +60,14 @@
 			"name":		"tZero",
 			"icon":		"Icon/tZero.png",
 			"type":		"Webapp",
-			"location":	"-",
-			"url": 	"https://www.tzero.com/"
+			"url": 		"https://www.tzero.com/"
 		},
 		{
 			"id":		"9",
 			"name":		"WorldMood",
 			"icon":		"Icon/WorldMood.png",
 			"type":		"Webapp",
-			"location":	"-",
-			"url": 	"http://worldmood.io/"
+			"url": 		"http://worldmood.io/"
 		},
 		{
 			"id":		"10",
@@ -81,7 +75,7 @@
 			"icon":		"Icon/Xcertify.png",
 			"type":		"Cmdline",
 			"location":	"apps/Xcertify/",
-			"exec": 	"'bash -c ./xcertify;bash'",
+			"exec": 	"./xcertify",
 			"github":	"https://github.com/akhil2015/Xcertify.git"
 		}
 	]

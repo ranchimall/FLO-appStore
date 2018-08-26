@@ -133,7 +133,7 @@ class FLOappStore:
 		if(app["type"] == "Gui"):
 			subprocess.Popen(app["exec"], cwd=app["location"])
 		elif(app["type"] == "Cmdline"):
-			subprocess.Popen(["gnome-terminal --command "+app["exec"]],cwd=app["location"],stdout=subprocess.PIPE,shell=True)
+			subprocess.Popen("gnome-terminal --command 'bash -c %s;bash'"%(app["exec"]),cwd=app["location"],stdout=subprocess.PIPE,shell=True)
 
 	def openBrowserApp(self,app):
 		self.appWin.destroy()
