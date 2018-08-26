@@ -13,7 +13,7 @@
 			"name":		"AlternateLove",
 			"icon":		"Icon/AternaLove.png",
 			"type":		"Cmdline",
-			"location":	"apps/Aterna-Love",
+			"location":	"apps/aternalove",
 			"exec": 	"'bash -c ./auto-aterna-love.sh;bash'",
 			"github":	"https://github.com/metacoin/aternalove.git"
 		},
@@ -55,7 +55,7 @@
 			"name":		"Florate",
 			"icon":		"Icon/Florate.png",
 			"type":		"Gui",
-			"location":	"apps/Florate/",
+			"location":	"apps/Florate-Dapp/",
 			"exec": 	"./Florate",
 			"github":	"https://github.com/Tarun047/FloRate-Dapp.git"
 		},
