@@ -48,7 +48,7 @@
 		},
 		{
 			"id":		"7",
-			"name":		"Florate",
+			"name":		"FloRate",
 			"icon":		"Icon/Florate.png",
 			"type":		"Gui",
 			"location":	"apps/FloRate-Dapp/",
