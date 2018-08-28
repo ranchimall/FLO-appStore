@@ -43,7 +43,7 @@
 			"icon":		"Icon/SharedSecret.png",
 			"type":		"Gui",
 			"location":	"apps/FLO-shared-secret/",
-			"exec": 	"bin/FLO_Secret",
+			"exec": 	"./FLO_Secret",
 			"github":	"https://github.com/akhil2015/FLO-shared-secret.git"
 		},
 		{
