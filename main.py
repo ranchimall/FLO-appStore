@@ -6,7 +6,16 @@ import os
 import webbrowser
 import json
 import math
+import socket
 
+
+def isConnected():
+	try:
+		socket.create_connection(("www.github.com", 80))
+		return True
+	except:
+		messagebox.showerror('FLOappStore', "Unable to Connect to GitHub!\nPlease check Internet connectivity and firewall!")
+		return False
 
 class FLOappStore:
 	def __init__(self, root):
@@ -90,6 +99,7 @@ class FLOappStore:
 
 	def execute(self,app):
 		print(app["name"])
+		isConnected()
 		self.appWin = Toplevel()
 		self.appWin.title(app["name"])
 		#self.appWin.geometry("500x100")
@@ -114,6 +124,8 @@ class FLOappStore:
 	def downloadApp(self,app):
 		self.appWin.destroy()
 		subprocess.Popen(['rm', '-rf', app['location']])
+		if(not isConnected()):
+			return
 		subprocess.Popen("gnome-terminal -- git clone %s"%(app["github"]),cwd="apps/",shell=True)
 		messagebox.showinfo(app['name'], f"Downloading {app['name']}...\n Please Wait until the downloader closes")
 
@@ -124,7 +136,9 @@ class FLOappStore:
 
 	def updateApp(self,app):
 		self.appWin.destroy()
-		subprocess.Popen("gnome-terminal -- git fetch --all",cwd=app['location'],shell=True)
+		if(not isConnected()):
+			return
+		subprocess.Popen("gnome-terminal -- git pull --all",cwd=app['location'],shell=True)
 		subprocess.Popen("gnome-terminal -- git reset --hard HEAD ",cwd=app['location'],shell=True)
 		messagebox.showinfo(app['name'], f"Updating {app['name']}...\n Please Wait until the updater closes")
 
@@ -139,6 +153,10 @@ class FLOappStore:
 		self.appWin.destroy()
 		webbrowser.open(app["url"],new=1)
 
+if(isConnected()):
+	subprocess.call("git pull",shell=True)
+else:
+	exit(0)
 with open('AppData.json',encoding='utf-8') as F:
 	apps=json.loads(F.read())["Dapps"]
 root = Tk()

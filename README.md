@@ -3,6 +3,8 @@ This is a Tkinter(Python 3) based gui app,which lets users to download/install,u
 
 ## Requirements
 1. Linux operating system(working on a cross platform version).
+2. git (to install git):
+		sudo apt-get install git
 
 ## Usage
 1. Clone/download this repository. (https://github.com/sairajzero/FLO-appStore/)
