@@ -37,5 +37,9 @@ A button for each app (with icon and app name) is generated for each app.The app
 1. Source code of the AppStore is main.py
 2. Apps are downloaded in the apps directory
 3. Icons for the apps are stored in icon directory
-
+4. On clicking the download button the appstore clones the app from the github repo.The appstore also removes files downloaded from wrong github repo.
+5. If the app is downloaded already,open app button - executes the app using the app[exec] from json file.
+6. Update app button - On clicking this button, the app data is 'pull'ed from the github repo. It also resets the app to the last commit preventing any malicious code affecting the app data ensuring safe and secure for the user
+7. Remove app button - Removes the downloaded local repo (app data) of the app.
+8. In addition to it,the appStore also updates itself from its repo for any changes in json or other updates.
 **Do not remove the directories and/or files mannually**
