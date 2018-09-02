@@ -16,7 +16,7 @@ Gui and Cmdline dapps :
 github - GitHub repo link of the app
 exec - execution cmd for the binary
 
-A button for each app (with icon n app name) is generated for each app.The appstore shows 10 (5rows*2columns) apps per page.
+A button for each app (with icon and app name) is generated for each app.The appstore shows 10 (5rows*2columns) apps per page.
 
 ## Requirements
 1. Linux operating system(working on a cross platform version).
