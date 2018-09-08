@@ -7,7 +7,9 @@ import webbrowser
 import json
 import math
 import socket
+import requests
 
+JsonAddress = "ocZXNtzpiUqBvzQorjAKmZ5MhXxGTLKeSH"
 
 def isConnected():
 	try:
@@ -16,6 +18,31 @@ def isConnected():
 	except:
 		messagebox.showerror('FLOappStore', "Unable to Connect to GitHub!\nPlease check Internet connectivity and firewall!")
 		return False
+
+def readUnitFromBlockchain(txid):
+    rawtx = subprocess.check_output(["flo-cli","--testnet", "getrawtransaction", str(txid)])
+    rawtx = str(rawtx)
+    rawtx = rawtx[2:-3]
+    tx = subprocess.check_output(["flo-cli","--testnet", "decoderawtransaction", str(rawtx)])
+    content = json.loads(tx)
+    text = content['floData']
+    return text
+
+def getJsonData():
+    r = requests.get("https://testnet.florincoin.info/ext/getaddress/"+JsonAddress)
+    data = json.loads(r.content)
+    #print(data)
+    Dapps = []
+    for i in range(len(data['last_txs'])):
+        if(data['last_txs'][i]['type']=='vin'):
+            content = readUnitFromBlockchain(data['last_txs'][i]['addresses'])
+            #print(content)
+            if content.startswith("text:Dapps"):
+                #print(data['last_txs'][i]['addresses'])
+                pos = content.find('{')
+                Dapps = Dapps + [json.loads(content[pos:])]
+    #print(Dapps)
+    return Dapps
 
 class FLOappStore:
 	def __init__(self, root):
@@ -80,7 +107,11 @@ class FLOappStore:
 		startIndex=(pageNum-1)*(self.maxRow*self.maxCol)
 
 		for app in self.searchResult[startIndex:]:
-			self.icon= self.icon+[PhotoImage(file=app["icon"])]
+			try:
+				img=PhotoImage(file=app["icon"])
+			except:
+				img=PhotoImage(file='Icon/noimage.png')
+			self.icon= self.icon+[img]
 			self.appButton = self.appButton + [Button(self.listFrame,text=app["name"],image = self.icon[-1],compound="left",width="500",height="50",command=lambda app=app:self.execute(app))]
 			self.appButton[-1].grid(row = Xrow,column = Xcol)
 			Xcol=Xcol+1
@@ -152,13 +183,15 @@ class FLOappStore:
 	def openBrowserApp(self,app):
 		self.appWin.destroy()
 		webbrowser.open(app["url"],new=1)
-
+'''
 if(isConnected()):
 	subprocess.call("git pull",shell=True)
 else:
 	exit(0)
 with open('AppData.json',encoding='utf-8') as F:
 	apps=json.loads(F.read())["Dapps"]
+	'''
+apps = getJsonData()
 root = Tk()
 root.title("FLOappStore")
 root.geometry("1100x500")
