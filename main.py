@@ -11,6 +11,12 @@ import requests
 
 JsonAddress = "ocZXNtzpiUqBvzQorjAKmZ5MhXxGTLKeSH"
 
+def searchDict(dicArr,key,val):
+    for i in range(len(dicArr)):
+        if(dicArr[i][key]==val):
+            return i
+    return -1
+
 def isConnected():
 	try:
 		socket.create_connection(("www.github.com", 80))
@@ -40,7 +46,12 @@ def getJsonData():
             if content.startswith("text:Dapps"):
                 #print(data['last_txs'][i]['addresses'])
                 pos = content.find('{')
-                Dapps = Dapps + [json.loads(content[pos:])]
+                app = json.loads(content[pos:])
+                i = searchDict(Dapps,'id',app['id'])
+                if (i!=-1):
+                    del(Dapps[i])
+                if ('remove' not in app.keys()):
+                    Dapps = Dapps + [app]
     #print(Dapps)
     return Dapps
 
