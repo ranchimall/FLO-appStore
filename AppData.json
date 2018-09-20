@@ -52,7 +52,7 @@
 			"icon":		"Icon/Florate.png",
 			"type":		"Gui",
 			"location":	"apps/FloRate-Dapp/",
-			"exec": 	"./Florate",
+			"exec": 	"./FloRate",
 			"github":	"https://github.com/Tarun047/FloRate-Dapp.git"
 		},
 		{
