@@ -44,7 +44,7 @@ def getJsonData():
                 app = json.loads(content)
             except : 
                 continue
-            print(app)
+            #print(app)
             if 'Dapp' in app.keys():
                 Dapps = Dappend(Dapps,app['Dapp'])
     #print(Dapps)

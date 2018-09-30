@@ -70,7 +70,7 @@ def getJsonData(Dapps, lastTx):
         lastTx = 0
     #print(lastTx)
     for i in range(lastTx,len(data['last_txs'])):
-        print(i)
+        #print(i)
         if(data['last_txs'][i]['type']=='vin'):
             content = readUnitFromBlockchain(data['last_txs'][i]['addresses'])
             #print(content)
@@ -246,7 +246,7 @@ except:
 
 with open('Apps.json','w+') as F:
     data = json.dumps({'Dapps':apps ,'lastTx':lastTx})
-    print(data)
+    #print(data)
     F.write(data)
 
 root = Tk()
