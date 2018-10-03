@@ -1,10 +1,14 @@
 # FLO-AppStore
-This is a Tkinter(Python 3) based gui app,which lets users to download/install,update,remove,execute and manage other FLO Dapps.The app reads the details of other dapps from AppData.json file.
+This is a Tkinter(Python 3) based gui app,which lets users to download/install,update,remove,execute and manage other FLO Dapps.The app reads the details of other dapps from Flo Blockchain.These details are added by the authoritative user by making transactions with the dapp details with his/her required address.A hash is calculated of the dapps details and is also stored in the blockchain.When the app is opened for the first time,all the details of dapps is fetched from flo blockchain(only transactions of type "vin" is considered for the specified/authoritative User address and is stored in local file along with the last txid fetched.The purpose of fetching the last txid is to optimize the time it takes while opening the app.The flostore app need not have to re-read all the transactions,instead it will start fetching details after the last txid fetched.Inorder to provide security of local data fetched in json format,the hash of local data stored is compared with the hash earlier stored in blockchain. 
 The details are as follows 
 id - App id
 name - Name of the app
 icon - Icon img location 
 type - App type (webapp, cmdline or gui)
+exec - Execution Command
+github - github link
+
+Note:-Inorder to remove a dapp from the flostore permanently,the authoritative user has to make a transaction of that app,with 'remove' paramater/key(in json format) added in the detail of that dapp.
 
 Webapps are available as website n should be opened in browser
 Gui apps are open by running their binary files
@@ -22,6 +26,8 @@ A button for each app (with icon and app name) is generated for each app.The app
 1. Linux operating system(working on a cross platform version).
 2. git (to install git):
 		sudo apt-get install git
+3. Internet
+4. Flo Wallet(Running)
 
 ## Usage
 1. Clone/download this repository. (https://github.com/sairajzero/FLO-appStore/)
@@ -41,5 +47,5 @@ A button for each app (with icon and app name) is generated for each app.The app
 5. If the app is downloaded already,open app button - executes the app using the app[exec] from json file.
 6. Update app button - On clicking this button, the app data is 'pull'ed from the github repo. It also resets the app to the last commit preventing any malicious code affecting the app data ensuring safe and secure for the user
 7. Remove app button - Removes the downloaded local repo (app data) of the app.
-8. In addition to it,the appStore also updates itself from its repo for any changes in json or other updates.
+8. In addition to it,the appStore also updates itself from its repo for any changes in json in the blockchain or other updates.
 **Do not remove the directories and/or files mannually**
