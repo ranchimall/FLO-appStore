@@ -234,39 +234,71 @@ class FLOappStore:
     def openBrowserApp(self,app):
         self.appWin.destroy()
         webbrowser.open(app["url"],new=1)
-'''
-if(isConnected()):
-    subprocess.call("git pull",shell=True)
-else:
-    exit(0)
-with open('AppData.json',encoding='utf-8') as F:
-    apps=json.loads(F.read())["Dapps"]
-    '''
-
-try:
-    with open('Apps.json','r') as F:
-        data=json.loads(F.read())
-        apps = data['Dapps']
-        lastTx = data['lastTx']
-except:
-    apps = []
-    lastTx = -1
-
-try:
-    (apps,lastTx) = getJsonData(apps,lastTx)
-except:
-    sys.exit(1)
 
 
-with open('Apps.json','w+') as F:
-    data = json.dumps({'Dapps':apps ,'lastTx':lastTx})
-    #print(data)
-    F.write(data)
+def refreshAppData():
+    global apps
+    print("Refreshing App Details")
+    try:
+        with open('Apps.json','r') as F:
+            data=json.loads(F.read())
+            apps = data['Dapps']
+            lastTx = data['lastTx']
+    except:
+        apps = []
+        lastTx = -1
 
+    try:
+        (apps,lastTx) = getJsonData(apps,lastTx)
+    except:
+        sys.exit(1)
+    with open('Apps.json','w+') as F:
+        data = json.dumps({'Dapps':apps ,'lastTx':lastTx})
+        F.write(data)
+    print("Loaded App Details")
+
+def Credits():
+    print("Credits")
+    creditsWin = Toplevel()
+    creditsWin.title('Credits')
+    infoLabel = Label(creditsWin,text="FLO AppStore",font=("Arial", 16))
+    infoLabel.pack()
+    vLabel = Label(creditsWin,text="version 1.0",font=("Arial", 8))
+    vLabel.pack()
+    creditLabel1 = Label(creditsWin,text="\n--Created by--",font=("Arial", 10))
+    creditLabel1.pack()
+    creditLabel2 = Label(creditsWin,text="Ranchi Mall Internship Blockchain Contract",font=("Arial", 12))
+    creditLabel2.pack()
+    internLabel = Label(creditsWin,text="Interns : Sai Raj, Kaushal",font=("Arial", 8))
+    internLabel.pack()
+    forLabel1 = Label(creditsWin,text="\n--For--",font=("Arial", 10))
+    forLabel1.pack()
+    forLabel2 = Label(creditsWin,text="Ranchi Mall FLO Blockchain Contract",font=("Arial", 12))
+    forLabel2.pack()
+    
+    creditsWin.mainloop()
+
+
+refreshAppData()
 root = Tk()
 root.title("FLOappStore")
 root.geometry("1100x500")
 root.resizable(0,0)
+
+menubar = Menu(root)
+appmenu = Menu(menubar, tearoff=0)
+appmenu.add_command(label="Refresh", command=refreshAppData)
+appmenu.add_separator()
+appmenu.add_command(label="Exit", command=root.quit)
+menubar.add_cascade(label="App", menu=appmenu)
+helpmenu = Menu(menubar, tearoff=0)
+helpmenu.add_command(label="ReadMe", command=lambda :webbrowser.open("README.md"))
+helpmenu.add_command(label="GitHub", command=lambda :webbrowser.open("https://github.com/ranchimall/FLO-appStore",new=1))
+helpmenu.add_separator()
+helpmenu.add_command(label="Credits", command=Credits)
+menubar.add_cascade(label="Help", menu=helpmenu)
+root.config(menu=menubar)
+
 gui = FLOappStore(root)
 gui.start()
 root.mainloop()
