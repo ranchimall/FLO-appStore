@@ -11,7 +11,7 @@ import socket
 import requests
 import hashlib
 
-JsonAddress = "oXa7t72t3CgnR11ycxVfdupz55eucHufHj"
+JsonAddresses = ["oXa7t72t3CgnR11ycxVfdupz55eucHufHj","oYcLBQZkgj9taQ5Zj6ziu8eqMREhyAPCcT","oYtGSrrfLvurYLKouZw3E7AyNuM8ZushbC"]
 
 def searchDict(dicArr,key,val):
     for i in range(len(dicArr)):
@@ -62,7 +62,7 @@ def verifyHash(localHash,txid):
         return False
 
 
-def getJsonData(Dapps, lastTx):
+def getJsonData(Dapps, lastTx,JsonAddress):
     try:
         r = requests.get("https://testnet.florincoin.info/ext/getaddress/"+JsonAddress)
         data = json.loads(r.content)
@@ -90,10 +90,17 @@ def getJsonData(Dapps, lastTx):
                 #print(e)
                 continue
             #print(app)
-            if 'Dapp' in app.keys():
-                Dapps = Dappend(Dapps,app['Dapp'])
+            try:
+                if 'Dapp' in app.keys():
+                    Dapps = Dappend(Dapps,app['Dapp'])
+            except:
+                continue
     #print(Dapps)
-    return (Dapps,len(data['last_txs'])-1)
+    {'Dapps':apps ,'lastTx':lastTx}
+    returndata = {}
+    returndata['Dapps'] = Dapps
+    returndata['lastTx'] = len(data['last_txs'])-1
+    return (returndata)
 
 class FLOappStore:
     def __init__(self, root):
@@ -184,8 +191,27 @@ class FLOappStore:
         isConnected()
         self.appWin = Toplevel()
         self.appWin.title(app["name"])
-        #self.appWin.geometry("500x100")
-        #self.appWin.resizable(0,0)
+        self.appWin.geometry("500x400")
+        self.appWin.resizable(0,0)
+
+        try:
+            description = app["description"]
+        except:
+            description = '*NIL*'
+
+        Label1 = Label(self.appWin, text="Description")
+        Label1.pack()       
+        GTextFrame = Frame(self.appWin)
+        GScroll = Scrollbar(GTextFrame)
+        GScroll.pack(side=RIGHT, fill=Y)
+        self.GLMsg = Text(GTextFrame,height=10,width=50,yscrollcommand=GScroll.set)
+        self.GLMsg.insert(END, description)
+        self.GLMsg.config(state='disabled')
+        self.GLMsg.pack(side = LEFT)
+        GTextFrame.pack()
+        GScroll.config(command=self.GLMsg.yview)
+
+
         if(app["type"] == "Gui" or app["type"] == "Cmdline"):
             if(os.path.isdir(app["location"]) and subprocess.Popen("git config --get remote.origin.url",cwd=app["location"],stdout=subprocess.PIPE,shell=True).communicate()[0].decode("utf-8").strip()==app["github"]):
                 openButton = Button(self.appWin,text="Open App",command=lambda :self.openApp(app))
@@ -238,22 +264,31 @@ class FLOappStore:
 
 def refreshAppData():
     global apps
+    apps = []
     print("Refreshing App Details")
     try:
         with open('Apps.json','r') as F:
             data=json.loads(F.read())
-            apps = data['Dapps']
-            lastTx = data['lastTx']
+            flag = True
     except:
-        apps = []
-        lastTx = -1
+        flag = False
+        data = {}
 
-    try:
-        (apps,lastTx) = getJsonData(apps,lastTx)
-    except:
-        sys.exit(1)
+
+    for addr in JsonAddresses:
+        try:
+            appdata = data[addr]['Dapps']
+            #print(appdata)
+            lastTx = data[addr]['lastTx']
+        except:
+            appdata = []
+            lastTx = -1
+        data[addr] = getJsonData(appdata,lastTx,addr)
+        #print(data[addr])
+        apps = apps + data[addr]['Dapps']
     with open('Apps.json','w+') as F:
-        data = json.dumps({'Dapps':apps ,'lastTx':lastTx})
+        #print(data)
+        data = json.dumps(data)
         F.write(data)
     print("Loaded App Details")
 

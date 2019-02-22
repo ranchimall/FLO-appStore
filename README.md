@@ -4,11 +4,13 @@ The details are as follows
 id - App id
 name - Name of the app
 icon - Icon img location 
+description - App Description
 type - App type (webapp, cmdline or gui)
 exec - Execution Command
 github - github link
 
-Note:-Inorder to remove a dapp from the flostore permanently,the authoritative user has to make a transaction of that app,with 'remove' paramater/key(in json format) added in the detail of that dapp.
+**Use generateAppData.py for generating the data required to send for the respective app**
+
 
 Webapps are available as website n should be opened in browser
 Gui apps are open by running their binary files

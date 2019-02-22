@@ -12,7 +12,7 @@
 			"name":		"AlternateLove",
 			"icon":		"Icon/AternaLove.png",
 			"type":		"Cmdline",
-			"location":	"apps/aternalove",
+			"location":	"apps/aternalove/",
 			"exec": 	"./auto-aterna-love.sh",
 			"github":	"https://github.com/metacoin/aternalove.git"
 		},
