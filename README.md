@@ -27,6 +27,7 @@ A button for each app (with icon and app name) is generated for each app.The app
 ## Requirements
 1. Linux operating system(working on a cross platform version).
 2. git (to install git):
+
 		sudo apt-get install git
 3. Internet
 4. Flo Wallet(Running)
@@ -34,6 +35,7 @@ A button for each app (with icon and app name) is generated for each app.The app
 ## Usage
 1. Clone/download this repository. (https://github.com/ranchimall/FLO-appStore/)
 2. Run the binary file (FLO_appStore)
+
 		./FLO_appStore
 ![Screenshot](screenshots/App-Store.png)
 3. For installing an dapp,user needs to click on respective app.A popup window will open which ask user to download the dapp if not previously installed.
