@@ -35,7 +35,7 @@ A button for each app (with icon and app name) is generated for each app.The app
 1. Clone/download this repository. (https://github.com/ranchimall/FLO-appStore/)
 2. Run the binary file (FLO_appStore)
 		./FLO_appStore
-![Screenshot](https://github.com/ranchimall/FLO-appStore/blob/master/screenshots/App-Store.png)
+![Screenshot](screenshots/App-Store.png)
 3. For installing an dapp,user needs to click on respective app.A popup window will open which ask user to download the dapp if not previously installed.
 ![Screenshot](https://github.com/ranchimall/FLO-appStore/blob/master/screenshots/downloadApp.png)
 4. Once installed the same popup window will have extra buttons to open/remove dapp.
