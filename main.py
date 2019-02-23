@@ -11,7 +11,7 @@ import socket
 import requests
 import hashlib
 
-JsonAddresses = ["oXa7t72t3CgnR11ycxVfdupz55eucHufHj","oYcLBQZkgj9taQ5Zj6ziu8eqMREhyAPCcT","oYtGSrrfLvurYLKouZw3E7AyNuM8ZushbC"]
+JsonAddresses = ["FT9qkvuWXWBDRhHd42tDr5nMYFSx7bEhV7","FBcRbCxwChjTdgVewGMPBDDEFXzPcc7GAH","FC6CRkRCeJEKEGF2r1SFppPD5DXfVe1zWq"]
 
 def searchDict(dicArr,key,val):
     for i in range(len(dicArr)):
@@ -32,10 +32,10 @@ def isConnected():
         return False
 
 def readUnitFromBlockchain(txid):
-    rawtx = subprocess.check_output(["flo-cli","--testnet", "getrawtransaction", str(txid)])
+    rawtx = subprocess.check_output(["flo-cli", "getrawtransaction", str(txid)])
     rawtx = str(rawtx)
     rawtx = rawtx[2:-3]
-    tx = subprocess.check_output(["flo-cli","--testnet", "decoderawtransaction", str(rawtx)])
+    tx = subprocess.check_output(["flo-cli", "decoderawtransaction", str(rawtx)])
     content = json.loads(tx)
     text = content['floData']
     return str(text)
@@ -64,7 +64,7 @@ def verifyHash(localHash,txid):
 
 def getJsonData(Dapps, lastTx,JsonAddress):
     try:
-        r = requests.get("https://testnet.florincoin.info/ext/getaddress/"+JsonAddress)
+        r = requests.get("https://www.florincoin.info/ext/getaddress/"+JsonAddress)
         data = json.loads(r.content)
     except:
         isConnected()
