@@ -37,16 +37,16 @@ A button for each app (with icon and app name) is generated for each app.The app
 		./FLO_appStore
 ![Screenshot](screenshots/App-Store.png)
 3. For installing an dapp,user needs to click on respective app.A popup window will open which ask user to download the dapp if not previously installed.
-![Screenshot](https://github.com/ranchimall/FLO-appStore/blob/master/screenshots/downloadApp.png)
+![Screenshot](screenshots/downloadApp.png)
 4. Once installed the same popup window will have extra buttons to open/remove dapp.
-![Screenshot](https://github.com/ranchimall/FLO-appStore/blob/master/screenshots/openApp.png)
+![Screenshot](screenshots/openApp.png)
 5. Click on open app to open the Dapp
-![Screenshot](https://github.com/ranchimall/FLO-appStore/blob/master/screenshots/appHome.png)
+![Screenshot](screenshots/appHome.png)
 6. Updates for dapps are checked everytime when user is connected to Internet.Click on dapp which user want to update,if any updates are available,update button will automatically be displayed in the popup window.
 7. For browser apps, open browser button will be shown instead of download/open buttons. Click on it to open the webpage in browser.
-![Screenshot](https://github.com/ranchimall/FLO-appStore/blob/master/screenshots/browserApp.png)
+![Screenshot](screenshots/browserApp.png)
 6. User can also search for any dapp in flostore using Search bar feature.
-![Screenshot](https://github.com/ranchimall/FLO-appStore/blob/master/screenshots/searchApp.png)
+![Screenshot](screenshots/searchApp.png)
 7. For navigating to other pages in Flostore,use Next/Prev Buttons.
 
 ## Other Infos
